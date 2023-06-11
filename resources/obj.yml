@@ -1,0 +1,46 @@
+# description: object config
+
+
+## Override
+#
+filter_token_sentence_decorator:
+  remove_space: true
+  remove_empty: true
+
+
+## Language
+#
+# document parser that removes space and empty tokens, splits tokens on
+# whitespace, and strips front/end whitespace on sentences, and updates
+# indicies on documents
+spanmatch_doc_parser:
+  class_name: zensols.nlp.DecoratedFeatureDocumentParser
+  delegate: 'instance: doc_parser'
+  sentence_decorators: >-
+    instance: list:
+      filter_token_sentence_decorator,
+      split_token_sentence_decorator,
+      strip_sentence_decorator
+  document_decorators: >-
+    instance: list:
+      filter_empty_sentence_decorator,
+      update_document_decorator,
+      word_piece_doc_decorator
+
+word_piece_doc_decorator:
+  word_piece_doc_factory: 'instance: word_piece_doc_caching_factory'
+
+
+## Index
+#
+spanmatch_hyperparam:
+  class_name: zensols.datdesc.hyperparam.HyperparamSetLoader
+  data: 'resource(zensols.spanmatch): resources/hyperparam.yml'
+
+
+## Matcher
+#
+spanmatch_matcher:
+  class_name: zensols.spanmatch.Matcher
+  hyp: >-
+    call({'param': {'path': 'document_matcher'}}): spanmatch_hyperparam
