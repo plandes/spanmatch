@@ -123,6 +123,16 @@ target (106, 145):
 ```
 
 
+## Obtaining
+
+The easiest way to install the command line program is via the `pip` installer:
+```bash
+pip3 install --use-deprecated=legacy-resolver zensols.spanmatch
+```
+
+Binaries are also available on [pypi].
+
+
 ## Citation
 
 If you use this project in your research please use the following BibTeX entry:
@@ -143,16 +153,6 @@ If you use this project in your research please use the following BibTeX entry:
     publisher = "{{Association for Computational Linguistics}}"
 }
 ```
-
-
-## Obtaining
-
-The easiest way to install the command line program is via the `pip` installer:
-```bash
-pip3 install zensols.spanmatch
-```
-
-Binaries are also available on [pypi].
 
 
 ## Changelog
