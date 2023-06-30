@@ -96,7 +96,7 @@ for i, match in enumerate(res.matches[:5]):
 
 Output:
 
-```log
+```abnf
 2023-06-11 08:22:38,392 24 matches found
 source (0, 55):
     Johannes Gutenberg (1398 – 1468) was a German goldsmith
