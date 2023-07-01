@@ -39,8 +39,9 @@ the tokens to word points.
 
 *Figure 1*
 
-For more information, see "Hybrid Semantic Positional Token Clustering" in our
-paper [Hospital Discharge Summarization Data Provenance].
+For more information, see the "Hybrid Semantic Positional Token Clustering"
+section in our paper [Hospital Discharge Summarization Data Provenance].  This
+paper's primary repository is [here](https://github.com/uic-nlp-lab/dsprov).
 
 
 ## Documentation
