@@ -1,0 +1,53 @@
+zensols.spanmatch package
+=========================
+
+Submodules
+----------
+
+zensols.spanmatch.app
+---------------------
+.. inheritance-diagram:: zensols.spanmatch.app
+   :parts: 1
+
+.. automodule:: zensols.spanmatch.app
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.spanmatch.cli
+---------------------
+.. inheritance-diagram:: zensols.spanmatch.cli
+   :parts: 1
+
+.. automodule:: zensols.spanmatch.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.spanmatch.domain
+------------------------
+.. inheritance-diagram:: zensols.spanmatch.domain
+   :parts: 1
+
+.. automodule:: zensols.spanmatch.domain
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+zensols.spanmatch.match
+-----------------------
+.. inheritance-diagram:: zensols.spanmatch.match
+   :parts: 1
+
+.. automodule:: zensols.spanmatch.match
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: zensols.spanmatch
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,1022 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Contributing" href="../CONTRIBUTING.html" /><link rel="prev" title="API Reference" href="../api.html" />
+
+    <!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
+        <title>zensols.spanmatch package - Unsupervised Position-Based Semantic Matching 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../top.html"><div class="brand">Unsupervised Position-Based Semantic Matching 0.0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../top.html">
+  
+  
+  <span class="sidebar-brand-text">Unsupervised Position-Based Semantic Matching 0.0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Overview</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../api.html">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">zensols.spanmatch package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../CONTRIBUTING.html">Contributing</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div class="section" id="zensols-spanmatch-package">
+<h1>zensols.spanmatch package<a class="headerlink" href="#zensols-spanmatch-package" title="Permalink to this heading">#</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+</div>
+<div class="section" id="zensols-spanmatch-app">
+<h2>zensols.spanmatch.app<a class="headerlink" href="#zensols-spanmatch-app" title="Permalink to this heading">#</a></h2>
+<div class="graphviz"><img src="../_images/inheritance-3953eda9e1e42d6d7621c4587caa63400c70f8d0.png" alt="Inheritance diagram of zensols.spanmatch.app" usemap="#inheritance8b831e986a" class="inheritance graphviz" /></div>
+<map id="inheritance8b831e986a" name="inheritance8b831e986a">
+<area shape="rect" id="node1" href="#zensols.spanmatch.app.Application" target="_top" title="An API to match spans of semantically similar text across documents." alt="" coords="5,5,116,36"/>
+<area shape="rect" id="node3" href="#zensols.spanmatch.app.OutputFormat" target="_top" title="An enumeration." alt="" coords="223,84,357,115"/>
+<area shape="rect" id="node4" href="#zensols.spanmatch.app.ProtoApplication" target="_top" title="ProtoApplication(app: zensols.spanmatch.app.Application)" alt="" coords="408,5,561,36"/>
+</map><span class="target" id="module-zensols.spanmatch.app"></span><p>An API to match spans of semantically similar text across documents.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.Application">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.app.</span></span><span class="sig-name descname"><span class="pre">Application</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_parser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matcher</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/app.html#Application"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.app.Application" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>An API to match spans of semantically similar text across documents.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.Application.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_parser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matcher</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.spanmatch.app.Application.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.Application.doc_parser">
+<span class="sig-name descname"><span class="pre">doc_parser</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.parser.FeatureDocumentParser" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">FeatureDocumentParser</span></a></em><a class="headerlink" href="#zensols.spanmatch.app.Application.doc_parser" title="Permalink to this definition">#</a></dt>
+<dd><p>The feature document that normalizes (whitespace) parsed documents.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.Application.match">
+<span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format=OutputFormat.text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection=&lt;zensols.introspect.intsel.IntegerSelection</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file=PosixPath('-')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/app.html#Application.match"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.app.Application.match" title="Permalink to this definition">#</a></dt>
+<dd><p>Match spans across two text files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>) – the source match file</p></li>
+<li><p><strong>target_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>) – the target match file</p></li>
+<li><p><strong>output_format</strong> (<a class="reference internal" href="#zensols.spanmatch.app.OutputFormat" title="zensols.spanmatch.app.OutputFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">OutputFormat</span></code></a>) – the format to write the hyperparemters</p></li>
+<li><p><strong>selection</strong> (<a class="reference external" href="https://plandes.github.io/util/api/zensols.introspect.html#zensols.introspect.intsel.IntegerSelection" title="(in Zensols Utilities v1.12.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerSelection</span></code></a>) – the matches to output</p></li>
+<li><p><strong>output_file</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a>) – the output file or <code class="docutils literal notranslate"><span class="pre">-</span></code> for standard out</p></li>
+<li><p><strong>detail</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – whether to output more information</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.Application.matcher">
+<span class="sig-name descname"><span class="pre">matcher</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#zensols.spanmatch.match.Matcher" title="zensols.spanmatch.match.Matcher"><span class="pre">Matcher</span></a></em><a class="headerlink" href="#zensols.spanmatch.app.Application.matcher" title="Permalink to this definition">#</a></dt>
+<dd><p>Used to match spans of text.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.Application.write_hyperparam">
+<span class="sig-name descname"><span class="pre">write_hyperparam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">OutputFormat.text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/app.html#Application.write_hyperparam"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.app.Application.write_hyperparam" title="Permalink to this definition">#</a></dt>
+<dd><p>Write the matcher’s hyperparameter documentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>output_format</strong> (<a class="reference internal" href="#zensols.spanmatch.app.OutputFormat" title="zensols.spanmatch.app.OutputFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">OutputFormat</span></code></a>) – the format to write the hyperparemters</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.OutputFormat">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.app.</span></span><span class="sig-name descname"><span class="pre">OutputFormat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/app.html#OutputFormat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.app.OutputFormat" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></a></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.OutputFormat.json">
+<span class="sig-name descname"><span class="pre">json</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#zensols.spanmatch.app.OutputFormat.json" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.OutputFormat.sphinx">
+<span class="sig-name descname"><span class="pre">sphinx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#zensols.spanmatch.app.OutputFormat.sphinx" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.OutputFormat.text">
+<span class="sig-name descname"><span class="pre">text</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#zensols.spanmatch.app.OutputFormat.text" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.OutputFormat.yaml">
+<span class="sig-name descname"><span class="pre">yaml</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#zensols.spanmatch.app.OutputFormat.yaml" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.ProtoApplication">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.app.</span></span><span class="sig-name descname"><span class="pre">ProtoApplication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/app.html#ProtoApplication"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.app.ProtoApplication" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.ProtoApplication.CLI_META">
+<span class="sig-name descname"><span class="pre">CLI_META</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ClassVar" title="(in Python v3.11)"><span class="pre">ClassVar</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'is_usage_visible':</span> <span class="pre">False}</span></em><a class="headerlink" href="#zensols.spanmatch.app.ProtoApplication.CLI_META" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.ProtoApplication.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.spanmatch.app.ProtoApplication.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.ProtoApplication.app">
+<span class="sig-name descname"><span class="pre">app</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#zensols.spanmatch.app.Application" title="zensols.spanmatch.app.Application"><span class="pre">Application</span></a></em><a class="headerlink" href="#zensols.spanmatch.app.ProtoApplication.app" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.app.ProtoApplication.proto">
+<span class="sig-name descname"><span class="pre">proto</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/app.html#ProtoApplication.proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.app.ProtoApplication.proto" title="Permalink to this definition">#</a></dt>
+<dd><p>Used for REPL prototyping.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="zensols-spanmatch-cli">
+<h2>zensols.spanmatch.cli<a class="headerlink" href="#zensols-spanmatch-cli" title="Permalink to this heading">#</a></h2>
+<div class="graphviz"><img src="../_images/inheritance-dd778083e93d18b9772cff1cb3aa6162eee2fff0.png" alt="Inheritance diagram of zensols.spanmatch.cli" usemap="#inheritance2ba17abd54" class="inheritance graphviz" /></div>
+<map id="inheritance2ba17abd54" name="inheritance2ba17abd54">
+<area shape="rect" id="node2" href="#zensols.spanmatch.cli.ApplicationFactory" target="_top" title="Boots the application context from the command line. &#160;This first loads" alt="" coords="15,241,185,272"/>
+</map><span class="target" id="module-zensols.spanmatch.cli"></span><p>Command line entry point to the application.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.cli.ApplicationFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.cli.</span></span><span class="sig-name descname"><span class="pre">ApplicationFactory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/cli.html#ApplicationFactory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.cli.ApplicationFactory" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://plandes.github.io/util/api/zensols.cli.html#zensols.cli.app.ApplicationFactory" title="(in Zensols Utilities v1.12.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApplicationFactory</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.cli.ApplicationFactory.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/cli.html#ApplicationFactory.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.cli.ApplicationFactory.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="zensols.spanmatch.cli.main">
+<span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.cli.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['/Users/landes/opt/lib/python/bin/sphinx-build',</span> <span class="pre">'-M',</span> <span class="pre">'html',</span> <span class="pre">'/Users/landes/view/nlp/spanmatch/target/doc/src',</span> <span class="pre">'/Users/landes/view/nlp/spanmatch/target/doc/build']</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/cli.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.cli.main" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://plandes.github.io/util/api/zensols.cli.html#zensols.cli.app.ActionResult" title="(in Zensols Utilities v1.12.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActionResult</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="zensols-spanmatch-domain">
+<h2>zensols.spanmatch.domain<a class="headerlink" href="#zensols-spanmatch-domain" title="Permalink to this heading">#</a></h2>
+<div class="graphviz"><img src="../_images/inheritance-3ec4b9362b85f1c84f6258fa146833287dc4ca7f.png" alt="Inheritance diagram of zensols.spanmatch.domain" usemap="#inheritanced8466a92e9" class="inheritance graphviz" /></div>
+<map id="inheritanced8466a92e9" name="inheritanced8466a92e9">
+<area shape="rect" id="node5" href="#zensols.spanmatch.domain.DocumentMatchError" target="_top" title="Thrown for any document matching errors." alt="" coords="315,84,509,115"/>
+<area shape="rect" id="node6" href="#zensols.spanmatch.domain.Match" target="_top" title="A span of matching text between two documents." alt="" coords="5,241,77,272"/>
+<area shape="rect" id="node7" href="#zensols.spanmatch.domain.MatchResult" target="_top" title="Contains the lexical text match pairs from the first to the second" alt="" coords="101,241,224,272"/>
+<area shape="rect" id="node9" href="#zensols.spanmatch.domain.WordFlow" target="_top" title="The flow of a word between two documents." alt="" coords="249,241,351,272"/>
+<area shape="rect" id="node8" href="#zensols.spanmatch.domain.TokenPoint" target="_top" title="A token and its position in the document and in embedded space." alt="" coords="651,5,762,36"/>
+</map><span class="target" id="module-zensols.spanmatch.domain"></span><p>Domain and container classes for matching document passages.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.DocumentMatchError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.domain.</span></span><span class="sig-name descname"><span class="pre">DocumentMatchError</span></span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#DocumentMatchError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.DocumentMatchError" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://plandes.github.io/util/api/zensols.util.html#zensols.util.APIError" title="(in Zensols Utilities v1.12.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIError</span></code></a></p>
+<p>Thrown for any document matching errors.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.DocumentMatchError.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'zensols.spanmatch.domain'</span></em><a class="headerlink" href="#zensols.spanmatch.domain.DocumentMatchError.__module__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.domain.</span></span><span class="sig-name descname"><span class="pre">Match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_tokens=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_tokens=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flow_values=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#Match"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.Match" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://plandes.github.io/util/api/zensols.config.html#zensols.config.dictable.Dictable" title="(in Zensols Utilities v1.12.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dictable</span></code></a></p>
+<p>A span of matching text between two documents.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_tokens=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_tokens=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flow_values=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.spanmatch.domain.Match.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.asflatdict">
+<span class="sig-name descname"><span class="pre">asflatdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#Match.asflatdict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.Match.asflatdict" title="Permalink to this definition">#</a></dt>
+<dd><p>Like <code class="xref py py-meth docutils literal notranslate"><span class="pre">asdict()</span></code> but flatten in to a data structure suitable for
+writing to JSON or YAML.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.flow_values">
+<span class="sig-name descname"><span class="pre">flow_values</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.flow_values" title="Permalink to this definition">#</a></dt>
+<dd><p>The values of each word flow.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.source_document">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source_document</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureDocument" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">FeatureDocument</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.source_document" title="Permalink to this definition">#</a></dt>
+<dd><p>The originating document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureDocument" title="(in Zensols Natural Language Parsing v1.7.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureDocument</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.source_lexspan">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source_lexspan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.domain.LexicalSpan" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">LexicalSpan</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.source_lexspan" title="Permalink to this definition">#</a></dt>
+<dd><p>The originating document’s lexical span.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.domain.LexicalSpan" title="(in Zensols Natural Language Parsing v1.7.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LexicalSpan</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.source_span">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source_span</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureSpan" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">FeatureSpan</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.source_span" title="Permalink to this definition">#</a></dt>
+<dd><p>The originating document’s span.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureSpan" title="(in Zensols Natural Language Parsing v1.7.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureSpan</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.source_tokens">
+<span class="sig-name descname"><span class="pre">source_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.11)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint" title="zensols.spanmatch.domain.TokenPoint"><span class="pre">TokenPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.source_tokens" title="Permalink to this definition">#</a></dt>
+<dd><p>The originating tokens from the document.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.target_document">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target_document</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureDocument" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">FeatureDocument</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.target_document" title="Permalink to this definition">#</a></dt>
+<dd><p>The target document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureDocument" title="(in Zensols Natural Language Parsing v1.7.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureDocument</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.target_lexspan">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target_lexspan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.domain.LexicalSpan" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">LexicalSpan</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.target_lexspan" title="Permalink to this definition">#</a></dt>
+<dd><p>The target document’s lexical span.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.domain.LexicalSpan" title="(in Zensols Natural Language Parsing v1.7.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LexicalSpan</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.target_span">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">target_span</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureSpan" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">FeatureSpan</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.target_span" title="Permalink to this definition">#</a></dt>
+<dd><p>The target document’s span.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureSpan" title="(in Zensols Natural Language Parsing v1.7.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureSpan</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.target_tokens">
+<span class="sig-name descname"><span class="pre">target_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Set" title="(in Python v3.11)"><span class="pre">Set</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint" title="zensols.spanmatch.domain.TokenPoint"><span class="pre">TokenPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.target_tokens" title="Permalink to this definition">#</a></dt>
+<dd><p>The target tokens from the document</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.to_str">
+<span class="sig-name descname"><span class="pre">to_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#Match.to_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.Match.to_str" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.total_flow_value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_flow_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.Match.total_flow_value" title="Permalink to this definition">#</a></dt>
+<dd><p>The sum of the <a class="reference internal" href="#zensols.spanmatch.domain.Match.flow_values" title="zensols.spanmatch.domain.Match.flow_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flow_values</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.Match.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tokens=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_flow=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char_limit=9223372036854775807</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#Match.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.Match.write" title="Permalink to this definition">#</a></dt>
+<dd><p>Write this instance as either a <code class="xref py py-class docutils literal notranslate"><span class="pre">Writable</span></code> or as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Dictable</span></code>.
+If class attribute <code class="docutils literal notranslate"><span class="pre">_DICTABLE_WRITABLE_DESCENDANTS</span></code> is set as
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, then use the <a class="reference internal" href="#zensols.spanmatch.domain.Match.write" title="zensols.spanmatch.domain.Match.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method on children instead of
+writing the generated dictionary.  Otherwise, write this instance by
+first creating a <code class="docutils literal notranslate"><span class="pre">dict</span></code> recursively using <code class="xref py py-meth docutils literal notranslate"><span class="pre">asdict()</span></code>, then
+formatting the output.</p>
+<p>If the attribute <code class="docutils literal notranslate"><span class="pre">_DICTABLE_WRITE_EXCLUDES</span></code> is set, those attributes
+are removed from what is written in the <a class="reference internal" href="#zensols.spanmatch.domain.Match.write" title="zensols.spanmatch.domain.Match.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method.</p>
+<p>Note that this attribute will need to be set in all descendants in the
+instance hierarchy since writing the object instance graph is done
+recursively.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.domain.</span></span><span class="sig-name descname"><span class="pre">MatchResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#MatchResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://plandes.github.io/util/api/zensols.config.html#zensols.config.dictable.Dictable" title="(in Zensols Utilities v1.12.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dictable</span></code></a></p>
+<p>Contains the lexical text match pairs from the first to the second
+document given by <a class="reference internal" href="#zensols.spanmatch.match.Matcher.match" title="zensols.spanmatch.match.Matcher.match"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Matcher.match()</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.cost">
+<span class="sig-name descname"><span class="pre">cost</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><span class="pre">ndarray</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.cost" title="Permalink to this definition">#</a></dt>
+<dd><p>The earth mover distance solution, which is the cost of transportation
+from first to the second document.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><span class="pre">ndarray</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.dist" title="Permalink to this definition">#</a></dt>
+<dd><p>The distance matrix of all token’s in the embedded space.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.flows">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">flows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow" title="zensols.spanmatch.domain.WordFlow"><span class="pre">WordFlow</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.flows" title="Permalink to this definition">#</a></dt>
+<dd><p>The Word Mover positional flows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference internal" href="#zensols.spanmatch.domain.WordFlow" title="zensols.spanmatch.domain.WordFlow">WordFlow</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.keys" title="Permalink to this definition">#</a></dt>
+<dd><p>The :obj:<a href="#id1"><span class="problematic" id="id2">`</span></a>.TokenPoint.key`s to tokens used to normalize document
+frequencies in the nBOW.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.mapping">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mapping</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow" title="zensols.spanmatch.domain.WordFlow"><span class="pre">WordFlow</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.mapping" title="Permalink to this definition">#</a></dt>
+<dd><p>Like <a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.flows" title="zensols.spanmatch.domain.MatchResult.flows"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flows</span></code></a> but do not duplicate sources</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Tuple[<a class="reference internal" href="#zensols.spanmatch.domain.WordFlow" title="zensols.spanmatch.domain.WordFlow">WordFlow</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.matches">
+<span class="sig-name descname"><span class="pre">matches</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.11)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.Match" title="zensols.spanmatch.domain.Match"><span class="pre">Match</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.matches" title="Permalink to this definition">#</a></dt>
+<dd><p>The matching passages between the documents.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.source_points">
+<span class="sig-name descname"><span class="pre">source_points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint" title="zensols.spanmatch.domain.TokenPoint"><span class="pre">TokenPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.source_points" title="Permalink to this definition">#</a></dt>
+<dd><p>The first document’s token points.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.source_tokens">
+<span class="sig-name descname"><span class="pre">source_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint" title="zensols.spanmatch.domain.TokenPoint"><span class="pre">TokenPoint</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.source_tokens" title="Permalink to this definition">#</a></dt>
+<dd><p>The first document’s token points indexed by the <a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.key" title="zensols.spanmatch.domain.TokenPoint.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TokenPoint.key</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.target_points">
+<span class="sig-name descname"><span class="pre">target_points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint" title="zensols.spanmatch.domain.TokenPoint"><span class="pre">TokenPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.target_points" title="Permalink to this definition">#</a></dt>
+<dd><p>The second  document’s token points.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.target_tokens">
+<span class="sig-name descname"><span class="pre">target_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.11)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint" title="zensols.spanmatch.domain.TokenPoint"><span class="pre">TokenPoint</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.target_tokens" title="Permalink to this definition">#</a></dt>
+<dd><p>The first document’s token points indexed by the <a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.key" title="zensols.spanmatch.domain.TokenPoint.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TokenPoint.key</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.transit">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">np.ndarray</span></em><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.transit" title="Permalink to this definition">#</a></dt>
+<dd><p>np.ndarray</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>rtype</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.MatchResult.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_source=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_target=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tokens=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_mapping=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match_detail=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#MatchResult.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.MatchResult.write" title="Permalink to this definition">#</a></dt>
+<dd><p>Write this instance as either a <code class="xref py py-class docutils literal notranslate"><span class="pre">Writable</span></code> or as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Dictable</span></code>.
+If class attribute <code class="docutils literal notranslate"><span class="pre">_DICTABLE_WRITABLE_DESCENDANTS</span></code> is set as
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, then use the <a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.write" title="zensols.spanmatch.domain.MatchResult.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method on children instead of
+writing the generated dictionary.  Otherwise, write this instance by
+first creating a <code class="docutils literal notranslate"><span class="pre">dict</span></code> recursively using <code class="xref py py-meth docutils literal notranslate"><span class="pre">asdict()</span></code>, then
+formatting the output.</p>
+<p>If the attribute <code class="docutils literal notranslate"><span class="pre">_DICTABLE_WRITE_EXCLUDES</span></code> is set, those attributes
+are removed from what is written in the <a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.write" title="zensols.spanmatch.domain.MatchResult.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method.</p>
+<p>Note that this attribute will need to be set in all descendants in the
+instance hierarchy since writing the object instance graph is done
+recursively.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.TokenPoint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.domain.</span></span><span class="sig-name descname"><span class="pre">TokenPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#TokenPoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.TokenPoint" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A token and its position in the document and in embedded space.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.TokenPoint.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.spanmatch.domain.TokenPoint.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.TokenPoint.doc">
+<span class="sig-name descname"><span class="pre">doc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureDocument" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">FeatureDocument</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.TokenPoint.doc" title="Permalink to this definition">#</a></dt>
+<dd><p>The document that contains <a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.token" title="zensols.spanmatch.domain.TokenPoint.token"><code class="xref py py-obj docutils literal notranslate"><span class="pre">token</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.TokenPoint.embedding">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">embedding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">np.ndarray</span></em><a class="headerlink" href="#zensols.spanmatch.domain.TokenPoint.embedding" title="Permalink to this definition">#</a></dt>
+<dd><p>The token embedding.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.TokenPoint.key">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.TokenPoint.key" title="Permalink to this definition">#</a></dt>
+<dd><p>The key used by <a class="reference internal" href="#zensols.spanmatch.match.Matcher" title="zensols.spanmatch.match.Matcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">Matcher</span></code></a> used to index :class:<a href="#id3"><span class="problematic" id="id4">`</span></a>.WordFlow`s.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.TokenPoint.position">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.TokenPoint.position" title="Permalink to this definition">#</a></dt>
+<dd><p>The position of the token in the document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.TokenPoint.token">
+<span class="sig-name descname"><span class="pre">token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.tok.FeatureToken" title="(in Zensols Natural Language Parsing v1.7.3)"><span class="pre">FeatureToken</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.TokenPoint.token" title="Permalink to this definition">#</a></dt>
+<dd><p>The token used in document <a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.doc" title="zensols.spanmatch.domain.TokenPoint.doc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">doc</span></code></a> used for clustering.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.WordFlow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.domain.</span></span><span class="sig-name descname"><span class="pre">WordFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_tokens</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#WordFlow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.WordFlow" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://plandes.github.io/util/api/zensols.config.html#zensols.config.dictable.Dictable" title="(in Zensols Utilities v1.12.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dictable</span></code></a></p>
+<p>The flow of a word between two documents.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.WordFlow.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_tokens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_tokens</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.spanmatch.domain.WordFlow.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.WordFlow.source_key">
+<span class="sig-name descname"><span class="pre">source_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.WordFlow.source_key" title="Permalink to this definition">#</a></dt>
+<dd><p>The <a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.key" title="zensols.spanmatch.domain.TokenPoint.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TokenPoint.key</span></code></a>. of the originating document.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.WordFlow.source_tokens">
+<span class="sig-name descname"><span class="pre">source_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.11)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint" title="zensols.spanmatch.domain.TokenPoint"><span class="pre">TokenPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.WordFlow.source_tokens" title="Permalink to this definition">#</a></dt>
+<dd><p>The originating tokens that map from <a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.source_key" title="zensols.spanmatch.domain.WordFlow.source_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">source_key</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.WordFlow.target_key">
+<span class="sig-name descname"><span class="pre">target_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.WordFlow.target_key" title="Permalink to this definition">#</a></dt>
+<dd><p>The <a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.key" title="zensols.spanmatch.domain.TokenPoint.key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TokenPoint.key</span></code></a>. of the target document.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.WordFlow.target_tokens">
+<span class="sig-name descname"><span class="pre">target_tokens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.11)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint" title="zensols.spanmatch.domain.TokenPoint"><span class="pre">TokenPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#zensols.spanmatch.domain.WordFlow.target_tokens" title="Permalink to this definition">#</a></dt>
+<dd><p>The target tokens that map from <a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.target_key" title="zensols.spanmatch.domain.WordFlow.target_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">target_key</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.WordFlow.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#zensols.spanmatch.domain.WordFlow.value" title="Permalink to this definition">#</a></dt>
+<dd><p>The value of flow.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.domain.WordFlow.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">depth=0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">writer=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tokens=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/domain.html#WordFlow.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.domain.WordFlow.write" title="Permalink to this definition">#</a></dt>
+<dd><p>Write this instance as either a <code class="xref py py-class docutils literal notranslate"><span class="pre">Writable</span></code> or as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Dictable</span></code>.
+If class attribute <code class="docutils literal notranslate"><span class="pre">_DICTABLE_WRITABLE_DESCENDANTS</span></code> is set as
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, then use the <a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.write" title="zensols.spanmatch.domain.WordFlow.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method on children instead of
+writing the generated dictionary.  Otherwise, write this instance by
+first creating a <code class="docutils literal notranslate"><span class="pre">dict</span></code> recursively using <code class="xref py py-meth docutils literal notranslate"><span class="pre">asdict()</span></code>, then
+formatting the output.</p>
+<p>If the attribute <code class="docutils literal notranslate"><span class="pre">_DICTABLE_WRITE_EXCLUDES</span></code> is set, those attributes
+are removed from what is written in the <a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.write" title="zensols.spanmatch.domain.WordFlow.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method.</p>
+<p>Note that this attribute will need to be set in all descendants in the
+instance hierarchy since writing the object instance graph is done
+recursively.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="zensols-spanmatch-match">
+<h2>zensols.spanmatch.match<a class="headerlink" href="#zensols-spanmatch-match" title="Permalink to this heading">#</a></h2>
+<div class="graphviz"><img src="../_images/inheritance-2f2b8f4c74d48eec550fea2427e769e53f8f38e3.png" alt="Inheritance diagram of zensols.spanmatch.match" usemap="#inheritanceb682f64282" class="inheritance graphviz" /></div>
+<map id="inheritanceb682f64282" name="inheritanceb682f64282">
+<area shape="rect" id="node1" href="#zensols.spanmatch.match.Matcher" target="_top" title="Creates matching spans of text between two documents by first using the" alt="" coords="5,5,93,36"/>
+</map><span class="target" id="module-zensols.spanmatch.match"></span><p>Implements a method to match sections from documents to one another.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="zensols.spanmatch.match.Matcher">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">zensols.spanmatch.match.</span></span><span class="sig-name descname"><span class="pre">Matcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyp=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/match.html#Matcher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.match.Matcher" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Creates matching spans of text between two documents by first using the
+word mover algorithm and then clustering by tokens’ positions in their
+respective documents.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.match.Matcher.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyp=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#zensols.spanmatch.match.Matcher.__init__" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.match.Matcher.dtype">
+<span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#zensols.spanmatch.match.Matcher.dtype" title="Permalink to this definition">#</a></dt>
+<dd><p>The floating point type used for word mover and clustering.</p>
+<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="zensols.spanmatch.match.Matcher.hyp">
+<span class="sig-name descname"><span class="pre">hyp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://plandes.github.io/datdesc/api/zensols.datdesc.html#zensols.datdesc.hyperparam.HyperparamModel" title="(in Describe and optimize data v0.0.2)"><span class="pre">HyperparamModel</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#zensols.spanmatch.match.Matcher.hyp" title="Permalink to this definition">#</a></dt>
+<dd><p>The model’s hyperparameters.</p>
+<p>Hyperparameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:param cased: whether or not to treat text as cased
+:type cased: bool
+
+:param distance_metric: the default distance metric for
+                        calculating the distance from each
+                        embedded :class:`.tokenpoint`. :see:
+                        :function:`scipy.spatial.distance.cdist`
+:type distance_metric: str; one of: descendant, ancestor, all, euclidean
+
+:param bidirect_match: whether to order matches by a bidirectional
+                       flow
+:type bidirect_match: str; one of: none, norm, sum
+
+:param source_distance_threshold: the source document clustering
+                                  threshold distance
+:type source_distance_threshold: float
+
+:param target_distance_threshold: the target document clustering
+                                  threshold distance
+:type target_distance_threshold: float
+
+:param source_position_scale: used to scale the source document
+                              positional embedding component
+:type source_position_scale: float
+
+:param target_position_scale: used to scale the target document
+                              positional embedding component
+:type target_position_scale: float
+
+:param min_flow_value: the minimum match flow; any matches that
+                       fall below this value are filtered
+:type min_flow_value: float
+
+:param min_source_token_span: the minimum source span length in
+                              tokens to be considered for matchs
+:type min_source_token_span: int
+
+:param min_target_token_span: the minimum target span length in
+                              tokens to be considered for matchs
+:type min_target_token_span: int
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="zensols.spanmatch.match.Matcher.match">
+<span class="sig-name descname"><span class="pre">match</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_doc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/zensols/spanmatch/match.html#Matcher.match"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#zensols.spanmatch.match.Matcher.match" title="Permalink to this definition">#</a></dt>
+<dd><p>Match lexical spans of text from one document to the other.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_doc</strong> (<a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureDocument" title="(in Zensols Natural Language Parsing v1.7.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureDocument</span></code></a>) – the source document from where words flow</p></li>
+<li><p><strong>target_doc</strong> (<a class="reference external" href="https://plandes.github.io/nlparse/api/zensols.nlp.html#zensols.nlp.container.FeatureDocument" title="(in Zensols Natural Language Parsing v1.7.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeatureDocument</span></code></a>) – the target document to where words flow</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult" title="zensols.spanmatch.domain.MatchResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">MatchResult</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the matched document spans from the source to the target
+document</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-zensols.spanmatch">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-zensols.spanmatch" title="Permalink to this heading">#</a></h2>
+</div>
+</div>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../CONTRIBUTING.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Contributing</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../api.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">API Reference</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Paul Landes
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">zensols.spanmatch package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#zensols-spanmatch-app">zensols.spanmatch.app</a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.app.Application"><code class="docutils literal notranslate"><span class="pre">Application</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.app.Application.__init__"><code class="docutils literal notranslate"><span class="pre">Application.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.Application.doc_parser"><code class="docutils literal notranslate"><span class="pre">Application.doc_parser</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.Application.match"><code class="docutils literal notranslate"><span class="pre">Application.match()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.Application.matcher"><code class="docutils literal notranslate"><span class="pre">Application.matcher</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.Application.write_hyperparam"><code class="docutils literal notranslate"><span class="pre">Application.write_hyperparam()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.OutputFormat"><code class="docutils literal notranslate"><span class="pre">OutputFormat</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.app.OutputFormat.json"><code class="docutils literal notranslate"><span class="pre">OutputFormat.json</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.OutputFormat.sphinx"><code class="docutils literal notranslate"><span class="pre">OutputFormat.sphinx</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.OutputFormat.text"><code class="docutils literal notranslate"><span class="pre">OutputFormat.text</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.OutputFormat.yaml"><code class="docutils literal notranslate"><span class="pre">OutputFormat.yaml</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.ProtoApplication"><code class="docutils literal notranslate"><span class="pre">ProtoApplication</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.app.ProtoApplication.CLI_META"><code class="docutils literal notranslate"><span class="pre">ProtoApplication.CLI_META</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.ProtoApplication.__init__"><code class="docutils literal notranslate"><span class="pre">ProtoApplication.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.ProtoApplication.app"><code class="docutils literal notranslate"><span class="pre">ProtoApplication.app</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.app.ProtoApplication.proto"><code class="docutils literal notranslate"><span class="pre">ProtoApplication.proto()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols-spanmatch-cli">zensols.spanmatch.cli</a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.cli.ApplicationFactory"><code class="docutils literal notranslate"><span class="pre">ApplicationFactory</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.cli.ApplicationFactory.__init__"><code class="docutils literal notranslate"><span class="pre">ApplicationFactory.__init__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.spanmatch.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols-spanmatch-domain">zensols.spanmatch.domain</a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.DocumentMatchError"><code class="docutils literal notranslate"><span class="pre">DocumentMatchError</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.DocumentMatchError.__module__"><code class="docutils literal notranslate"><span class="pre">DocumentMatchError.__module__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match"><code class="docutils literal notranslate"><span class="pre">Match</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.__init__"><code class="docutils literal notranslate"><span class="pre">Match.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.asflatdict"><code class="docutils literal notranslate"><span class="pre">Match.asflatdict()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.flow_values"><code class="docutils literal notranslate"><span class="pre">Match.flow_values</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.source_document"><code class="docutils literal notranslate"><span class="pre">Match.source_document</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.source_lexspan"><code class="docutils literal notranslate"><span class="pre">Match.source_lexspan</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.source_span"><code class="docutils literal notranslate"><span class="pre">Match.source_span</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.source_tokens"><code class="docutils literal notranslate"><span class="pre">Match.source_tokens</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.target_document"><code class="docutils literal notranslate"><span class="pre">Match.target_document</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.target_lexspan"><code class="docutils literal notranslate"><span class="pre">Match.target_lexspan</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.target_span"><code class="docutils literal notranslate"><span class="pre">Match.target_span</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.target_tokens"><code class="docutils literal notranslate"><span class="pre">Match.target_tokens</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.to_str"><code class="docutils literal notranslate"><span class="pre">Match.to_str()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.total_flow_value"><code class="docutils literal notranslate"><span class="pre">Match.total_flow_value</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.Match.write"><code class="docutils literal notranslate"><span class="pre">Match.write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult"><code class="docutils literal notranslate"><span class="pre">MatchResult</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.__init__"><code class="docutils literal notranslate"><span class="pre">MatchResult.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.cost"><code class="docutils literal notranslate"><span class="pre">MatchResult.cost</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.dist"><code class="docutils literal notranslate"><span class="pre">MatchResult.dist</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.flows"><code class="docutils literal notranslate"><span class="pre">MatchResult.flows</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.keys"><code class="docutils literal notranslate"><span class="pre">MatchResult.keys</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.mapping"><code class="docutils literal notranslate"><span class="pre">MatchResult.mapping</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.matches"><code class="docutils literal notranslate"><span class="pre">MatchResult.matches</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.source_points"><code class="docutils literal notranslate"><span class="pre">MatchResult.source_points</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.source_tokens"><code class="docutils literal notranslate"><span class="pre">MatchResult.source_tokens</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.target_points"><code class="docutils literal notranslate"><span class="pre">MatchResult.target_points</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.target_tokens"><code class="docutils literal notranslate"><span class="pre">MatchResult.target_tokens</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.transit"><code class="docutils literal notranslate"><span class="pre">MatchResult.transit</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.MatchResult.write"><code class="docutils literal notranslate"><span class="pre">MatchResult.write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint"><code class="docutils literal notranslate"><span class="pre">TokenPoint</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.__init__"><code class="docutils literal notranslate"><span class="pre">TokenPoint.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.doc"><code class="docutils literal notranslate"><span class="pre">TokenPoint.doc</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.embedding"><code class="docutils literal notranslate"><span class="pre">TokenPoint.embedding</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.key"><code class="docutils literal notranslate"><span class="pre">TokenPoint.key</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.position"><code class="docutils literal notranslate"><span class="pre">TokenPoint.position</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.TokenPoint.token"><code class="docutils literal notranslate"><span class="pre">TokenPoint.token</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow"><code class="docutils literal notranslate"><span class="pre">WordFlow</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.__init__"><code class="docutils literal notranslate"><span class="pre">WordFlow.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.source_key"><code class="docutils literal notranslate"><span class="pre">WordFlow.source_key</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.source_tokens"><code class="docutils literal notranslate"><span class="pre">WordFlow.source_tokens</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.target_key"><code class="docutils literal notranslate"><span class="pre">WordFlow.target_key</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.target_tokens"><code class="docutils literal notranslate"><span class="pre">WordFlow.target_tokens</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.value"><code class="docutils literal notranslate"><span class="pre">WordFlow.value</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.domain.WordFlow.write"><code class="docutils literal notranslate"><span class="pre">WordFlow.write()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zensols-spanmatch-match">zensols.spanmatch.match</a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.match.Matcher"><code class="docutils literal notranslate"><span class="pre">Matcher</span></code></a><ul>
+<li><a class="reference internal" href="#zensols.spanmatch.match.Matcher.__init__"><code class="docutils literal notranslate"><span class="pre">Matcher.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.match.Matcher.dtype"><code class="docutils literal notranslate"><span class="pre">Matcher.dtype</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.match.Matcher.hyp"><code class="docutils literal notranslate"><span class="pre">Matcher.hyp</span></code></a></li>
+<li><a class="reference internal" href="#zensols.spanmatch.match.Matcher.match"><code class="docutils literal notranslate"><span class="pre">Matcher.match()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-zensols.spanmatch">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+<map id="inheritanced8466a92e9" name="inheritanced8466a92e9">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="127,5,199,36"/>
+<area shape="rect" id="node4" title="An interface for classes that have multi&#45;line debuging capability." alt="" coords="119,84,207,115"/>
+<area shape="rect" id="node2" title="Base exception from which almost all library raised errors extend." alt="" coords="367,5,457,36"/>
+<area shape="rect" id="node5" href="#zensols.spanmatch.domain.DocumentMatchError" target="_top" title="Thrown for any document matching errors." alt="" coords="315,84,509,115"/>
+<area shape="rect" id="node3" title="A class that that generates a dictionary recursively from data classes and" alt="" coords="119,163,206,193"/>
+<area shape="rect" id="node6" href="#zensols.spanmatch.domain.Match" target="_top" title="A span of matching text between two documents." alt="" coords="5,241,77,272"/>
+<area shape="rect" id="node7" href="#zensols.spanmatch.domain.MatchResult" target="_top" title="Contains the lexical text match pairs from the first to the second" alt="" coords="101,241,224,272"/>
+<area shape="rect" id="node9" href="#zensols.spanmatch.domain.WordFlow" target="_top" title="The flow of a word between two documents." alt="" coords="249,241,351,272"/>
+<area shape="rect" id="node8" href="#zensols.spanmatch.domain.TokenPoint" target="_top" title="A token and its position in the document and in embedded space." alt="" coords="651,5,762,36"/>
+</map>

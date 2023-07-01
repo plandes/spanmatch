@@ -1,0 +1,6 @@
+<map id="inheritance8b831e986a" name="inheritance8b831e986a">
+<area shape="rect" id="node1" href="#zensols.spanmatch.app.Application" target="_top" title="An API to match spans of semantically similar text across documents." alt="" coords="5,5,116,36"/>
+<area shape="rect" id="node2" title="Generic enumeration." alt="" coords="254,5,326,36"/>
+<area shape="rect" id="node3" href="#zensols.spanmatch.app.OutputFormat" target="_top" title="An enumeration." alt="" coords="223,84,357,115"/>
+<area shape="rect" id="node4" href="#zensols.spanmatch.app.ProtoApplication" target="_top" title="ProtoApplication(app: zensols.spanmatch.app.Application)" alt="" coords="408,5,561,36"/>
+</map>
