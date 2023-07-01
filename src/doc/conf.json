@@ -1,4 +1,4 @@
 {"includes": {"named": ["numpy", "pandas", "torch", "zensols.nlp", "zensols.util"],
-	      "mapped": [["zensols.nlparse", "{url}/nlp/"],
+	      "mapped": [["zensols.nlparse", "{url}/nlparse/"],
 			 ["zensols.datdesc", "{url}/datdesc/"],
 			 ["spacy", "https://spacy.io/api/doc/"]]}}
