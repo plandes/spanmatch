@@ -179,4 +179,4 @@ Copyright (c) 2023 Paul Landes
 [build-badge]: https://github.com/plandes/spanmatch/workflows/CI/badge.svg
 [build-link]: https://github.com/plandes/spanmatch/actions
 
-[Hospital Discharge Summarization Data Provenance]: https://example.com
+[Hospital Discharge Summarization Data Provenance]: https://aclanthology.org/2023.bionlp-1.41/
