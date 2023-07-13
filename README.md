@@ -139,19 +139,17 @@ Binaries are also available on [pypi].
 If you use this project in your research please use the following BibTeX entry:
 
 ```bibtex
-@inproceedings{landes-etal-2023-dsprov,
-    title = "{{Hospital Discharge Summarization Data Provenance}}",
-    author = "Landes, Paul  and
-      Chaise, Aaron J.  and
-      Patel, Kunal P. and
-      Huang, Sean S.  and
-      Di Eugenio, Barbara",
-    booktitle = "Proceedings of the 21st {{Workshop}} on {{Biomedical Language Processing}}",
-    month = jul,
-    year = "2023",
-    day = 9,
-    address = "Toronto, Canada",
-    publisher = "{{Association for Computational Linguistics}}"
+@inproceedings{landesHospitalDischargeSummarization2023,
+  title = {Hospital {{Discharge Summarization Data Provenance}}},
+  booktitle = {The 22nd {{Workshop}} on {{Biomedical Natural Language Processing}} and {{BioNLP Shared Tasks}}},
+  author = {Landes, Paul and Chaise, Aaron and Patel, Kunal and Huang, Sean and Di Eugenio, Barbara},
+  date = {2023-07},
+  pages = {439--448},
+  publisher = {{Association for Computational Linguistics}},
+  location = {{Toronto, Canada}},
+  url = {https://aclanthology.org/2023.bionlp-1.41},
+  urldate = {2023-07-10},
+  eventtitle = {{{BioNLP}} 2023}
 }
 ```
 
