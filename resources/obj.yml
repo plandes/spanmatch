@@ -1,4 +1,4 @@
-# description: object config
+# @meta {desc: 'object config', date: '2024-10-08'}
 
 
 ## Override
@@ -20,11 +20,11 @@ spanmatch_doc_parser:
     instance: list:
       filter_token_sentence_decorator,
       split_token_sentence_decorator,
-      strip_sentence_decorator
+      strip_token_container_decorator
   document_decorators: >-
     instance: list:
       filter_empty_sentence_decorator,
-      update_document_decorator,
+      update_token_container_decorator,
       word_piece_doc_decorator
 
 word_piece_doc_decorator:
