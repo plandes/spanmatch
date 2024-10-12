@@ -11,6 +11,7 @@ import logging
 from pathlib import Path
 import json
 import yaml
+import pandas as pd
 from zensols.util import stdout
 from zensols.cli import ApplicationError
 from zensols.introspect import IntegerSelection
@@ -26,6 +27,7 @@ class OutputFormat(Enum):
     sphinx = auto()
     json = auto()
     yaml = auto()
+    csv = auto()
 
 
 @dataclass
@@ -43,6 +45,17 @@ class Application(object):
         with open(path) as f:
             content: str = f.read()
         return self.doc_parser(content)
+
+    def _matches_to_dataframe(self, matches: List[Match]) -> pd.DataFrame:
+        rows: List[Tuple[Any, ...]] = []
+        cols: str = \
+            'flow src_start src_end src_text targ_start targ_end targ_text'
+        m: Match
+        for m in matches:
+            rows.append((m.total_flow_value,
+                         *m.source_lexspan.astuple, m.source_span.norm,
+                         *m.target_lexspan.astuple, m.target_span.norm))
+        return pd.DataFrame(rows, columns=cols.split())
 
     def match(self, source_file: Path, target_file: Path,
               output_format: OutputFormat = OutputFormat.text,
@@ -89,6 +102,9 @@ class Application(object):
                     json.dump({'matches': mdcts}, f, indent=4)
                 else:
                     yaml.dump({'matches': list(map(dict, mdcts))}, f)
+            elif output_format == OutputFormat.csv:
+                df: pd.DataFrame = self._matches_to_dataframe(matches)
+                df.to_csv(f, index=False)
             else:
                 raise ApplicationError(
                     f'Unsupported format: {output_format.name}')
