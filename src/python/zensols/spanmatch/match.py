@@ -86,14 +86,14 @@ class Matcher(object):
         TokenPoint._CASED = self.hyp.cased
 
     def _nbow(self, doc: FeatureDocument) -> \
-            Tuple[List[TokenPoint], Dict[str, List[TokenPoint]]]:
+            Tuple[List[TokenPoint], Dict[str, List[TokenPoint]], ...]:
         """Create the nBOW (bag of words) used for document frequencies."""
         def filter_toks(t: FeatureToken) -> bool:
             return not t.is_stop and not t.is_punctuation and not t.is_space
 
         toks: List[TokenPoint] = []
         by_key: Dict[str, List[TokenPoint]] = collections.defaultdict(list)
-        ftoks: Tuple[FeatureToken] = tuple(
+        ftoks: Tuple[FeatureToken, ...] = tuple(
             filter(filter_toks, doc.token_iter()))
         if len(ftoks) == 0:
             ftoks = doc.tokens
@@ -123,8 +123,8 @@ class Matcher(object):
         :param b: the target document
 
         """
-        aps: Tuple[List[TokenPoint]]
-        bps: Tuple[List[TokenPoint]]
+        aps: Tuple[List[TokenPoint], ...]
+        bps: Tuple[List[TokenPoint], ...]
         atoks: Dict[str, List[TokenPoint]]
         btoks: Dict[str, List[TokenPoint]]
         aps, atoks = self._nbow(a)
@@ -208,7 +208,8 @@ class Matcher(object):
             by_cluster[tp] = cid
         return by_cluster
 
-    def _cluster_by_position(self, res: MatchResult, fwd: bool) -> Tuple[Match]:
+    def _cluster_by_position(self, res: MatchResult, fwd: bool) -> \
+            Tuple[Match, ...]:
         """Cluster points using their posisiton in the document.
 
         :return: the matched document spans from the source to the target
@@ -251,7 +252,7 @@ class Matcher(object):
         return tuple(sorted(matches))
 
     def _reorder_bimatch(self, forward_res: MatchResult,
-                         reverse_res: MatchResult) -> Tuple[Match]:
+                         reverse_res: MatchResult) -> Tuple[Match, ...]:
         def filter_match(m: Match) -> bool:
             if m in seen:
                 return False

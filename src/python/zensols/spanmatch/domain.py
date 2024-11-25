@@ -287,7 +287,7 @@ class MatchResult(Dictable):
     dist: np.ndarray = field(repr=False)
     """The distance matrix of all token's in the embedded space."""
 
-    matches: Tuple[Match] = field(default=None)
+    matches: Tuple[Match, ...] = field(default=None)
     """The matching passages between the documents."""
 
     @property
@@ -297,7 +297,7 @@ class MatchResult(Dictable):
 
     @property
     @persisted('_flows', transient=True)
-    def flows(self) -> Tuple[WordFlow]:
+    def flows(self) -> Tuple[WordFlow, ...]:
         """The Word Mover positional flows."""
         trans: np.ndarray = self.transit
         paths: np.ndarray = np.nonzero(trans)
@@ -316,7 +316,7 @@ class MatchResult(Dictable):
 
     @property
     @persisted('_mapping', transient=True)
-    def mapping(self) -> Tuple[WordFlow]:
+    def mapping(self) -> Tuple[WordFlow, ...]:
         """Like :obj:`flows` but do not duplicate sources"""
         srcs: Set[str] = set()
         flows: List[WordFlow] = []
