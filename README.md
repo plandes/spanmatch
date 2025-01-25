@@ -1,8 +1,7 @@
 # Unsupervised Position-Based Semantic Matching
 
 [![PyPI][pypi-badge]][pypi-link]
-[![Python 3.9][python39-badge]][python39-link]
-[![Python 3.10][python310-badge]][python310-link]
+[![Python 3.11][python311-badge]][python311-link]
 [![Build Status][build-badge]][build-link]
 
 An API to match spans of semantically similar text across documents.  Each
@@ -163,17 +162,15 @@ An extensive changelog is available [here](CHANGELOG.md).
 
 [MIT License](LICENSE.md)
 
-Copyright (c) 2023 Paul Landes
+Copyright (c) 2023 - 2025 Paul Landes
 
 
 <!-- links -->
 [pypi]: https://pypi.org/project/zensols.spanmatch/
 [pypi-link]: https://pypi.python.org/pypi/zensols.spanmatch
 [pypi-badge]: https://img.shields.io/pypi/v/zensols.spanmatch.svg
-[python39-badge]: https://img.shields.io/badge/python-3.9-blue.svg
-[python39-link]: https://www.python.org/downloads/release/python-390
-[python310-badge]: https://img.shields.io/badge/python-3.10-blue.svg
-[python310-link]: https://www.python.org/downloads/release/python-310
+[python311-badge]: https://img.shields.io/badge/python-3.11-blue.svg
+[python311-link]: https://www.python.org/downloads/release/python-3110
 [build-badge]: https://github.com/plandes/spanmatch/workflows/CI/badge.svg
 [build-link]: https://github.com/plandes/spanmatch/actions
 
